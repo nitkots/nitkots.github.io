@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitesh Kothari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --serif: 'EB Garamond', Georgia, serif;
+  --sans:  'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: #ffffeb;
+  color: #000;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 36px 100px;
+}
+
+/* ── NAV ── */
+nav {
+  padding: 32px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.nav-links { display: flex; gap: 24px; margin-left: auto; }
+nav a {
+  text-decoration: none;
+  color: #000;
+  font-size: 13.5px;
+  font-weight: 400;
+  font-family: var(--sans);
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.15s;
+}
+nav a.active { font-weight: 500; border-bottom-color: #000; }
+nav a:hover  { border-bottom-color: #000; }
+
+/* ── ABOVE FOLD ── */
+.above-fold {
+  min-height: 92vh;
+  padding-top: 12vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1.5px solid #e4e4e4;
+  margin-bottom: 20px;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+h1 {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  margin-bottom: 6px;
+}
+
+.meta {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 3px;
+}
+
+/* ── EMAIL COPY (inline, next to the email itself) ── */
+.email-copy {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+}
+.email-copy:hover, .email-copy:focus-visible { color: #333; background: rgba(0,0,0,0.04); }
+.email-copy:focus-visible { outline: 2px solid #cfcfae; outline-offset: 2px; }
+.email-copy.pressed { transform: scale(0.96); }
+.email-copy.copied { color: #1f9d4c; }
+
+.email-icon {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+}
+.email-copy:hover .email-icon, .email-copy:focus-visible .email-icon { opacity: 0.9; }
+.email-copy.copied .email-icon { opacity: 1; }
+.email-icon svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.email-icon .icon-copy { opacity: 1; transform: scale(1); }
+.email-icon .icon-check { opacity: 0; transform: scale(0.5); }
+.email-copy.copied .icon-copy { opacity: 0; transform: scale(0.5); }
+.email-copy.copied .icon-check { opacity: 1; transform: scale(1); }
+
+.email-tip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.email-tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #1a1a1a;
+}
+.email-copy.copied .email-tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── TOP LINKS ── */
+.links {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.link-item {
+  position: relative;
+  display: inline-block;
+}
+.link-item a {
+  text-decoration: none;
+  color: #000;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1px;
+  display: inline-block;
+  transition: border-color 0.18s, transform 0.18s ease;
+  transform-origin: center bottom;
+}
+.link-item a:hover {
+  border-color: #000;
+  transform: scale(1.09);
+}
+
+/* ── BROWSER-CHROME PREVIEW CARD ── */
+/* Only shown on hover of .link-item */
+.preview-card {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  z-index: 100;
+  pointer-events: none;
+  text-align: left;
+}
+.link-item:hover .preview-card { display: block; }
+
+/* Chrome bar */
+.b-chrome {
+  background: #f2f2f2;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.b-dots {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.b-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.b-url {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 9px;
+  color: #666;
+  font-family: var(--sans);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+}
+
+/* Browser body */
+.b-body {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* GitHub body */
+.b-gh {
+  background: #0d1117;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.b-gh-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.b-gh-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #30363d;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.b-gh-avatar svg { width: 17px; height: 17px; fill: #8b949e; }
+.b-gh-username {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e6edf3;
+  font-family: var(--sans);
+}
+.b-gh-repos {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 2px;
+}
+.b-gh-repo {
+  font-size: 10.5px;
+  color: #58a6ff;
+  font-family: var(--sans);
+  white-space: nowrap;
+}
+.b-gh-repo::before { content: '⬡ '; color: #30363d; font-size: 9px; }
+
+/* LinkedIn body */
+.b-li {
+  background: #fff;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  border-top: 3px solid #0a66c2;
+}
+.b-li-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.b-li-photo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #dde8f5;
+  flex-shrink: 0;
+}
+.b-li-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  font-family: var(--sans);
+}
+.b-li-sub {
+  font-size: 10.5px;
+  color: #666;
+  font-family: var(--sans);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.b-li-badge {
+  display: inline-block;
+  background: #0a66c2;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: var(--sans);
+  margin-top: 6px;
+}
+
+/* X body */
+.b-x {
+  background: #fff;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-top: 3px solid #000;
+}
+.b-x-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.b-x-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #000;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.b-x-avatar svg { width: 19px; height: 19px; }
+.b-x-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  font-family: var(--sans);
+}
+.b-x-handle {
+  font-size: 10.5px;
+  color: #666;
+  font-family: var(--sans);
+  margin-top: 2px;
+}
+.b-x-badge {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: var(--sans);
+}
+
+/* WovV body */
+.b-wovv {
+  background: #fff;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  border-top: 3px solid #f6a72b;
+}
+.b-wovv-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #fff6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.b-wovv-mark img { width: 20px; height: 20px; display: block; }
+.b-wovv-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  font-family: var(--sans);
+  margin-top: 2px;
+}
+.b-wovv-role {
+  font-size: 10.5px;
+  color: #666;
+  font-family: var(--sans);
+}
+.b-wovv-badge {
+  display: inline-block;
+  background: #f6a72b;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: var(--sans);
+  margin-top: 2px;
+}
+
+/* ── BIO ── */
+.bio {
+  text-align: left;
+  max-width: 660px;
+  width: 100%;
+}
+.bio p {
+  font-family: var(--sans);
+  color: #1a1a1a;
+  font-size: 14.5px;
+  line-height: 1.78;
+  margin-bottom: 15px;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.bio p:last-child { margin-bottom: 0; }
+.bio a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 2px;
+  display: inline-block;
+  transition: text-decoration-color 0.15s, transform 0.18s ease;
+  transform-origin: center bottom;
+}
+.bio a:hover { text-decoration-color: #000; transform: scale(1.08); }
+
+/* Bio link with a hover preview card (same pattern as the top links) */
+.bio-link-item { position: relative; display: inline-block; }
+.bio-link-item:hover .preview-card,
+.bio-link-item:focus-within .preview-card { display: block; }
+
+.b-img { padding: 0; height: 160px; }
+.b-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+.b-img-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  line-height: 1.35;
+  padding: 20px 10px 8px;
+}
+
+/* ── SCROLL HINT ── */
+.scroll-hint {
+  margin-top: 40px;
+  font-size: 12px;
+  color: #ccc;
+  font-family: var(--sans);
+  letter-spacing: 0.04em;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  width: 40px;
+  height: 1px;
+  background: #e8e8e8;
+  margin: 64px auto 0;
+}
+
+/* ── SECTIONS ── */
+.below-fold { padding-top: 0; }
+section { margin-top: 56px; }
+.section-label {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 28px;
+}
+
+/* ── EDUCATION ── */
+.edu-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 4px 0 0;
+}
+.edu-mark {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2px;
+}
+.edu-mark img {
+  max-width: 56px;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.8;
+}
+.edu-body { flex: 1; min-width: 0; }
+.edu-school {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f0f0f;
+  letter-spacing: -0.1px;
+  margin-bottom: 5px;
+}
+.edu-degree {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  font-family: var(--sans);
+}
+.edu-degree + .edu-degree { margin-top: 1px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .container { padding: 0 20px 80px; }
+  nav { padding: 24px 0 0; gap: 16px; }
+  .nav-links { gap: 16px; }
+  nav a { font-size: 13px; }
+  .above-fold { min-height: 85vh; padding-top: 8vh; }
+  h1 { font-size: 26px; }
+  .bio { max-width: 100%; }
+  .edu-mark { width: 44px; height: 44px; }
+  .edu-mark img { max-width: 44px; max-height: 44px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="work.html">Work</a>
+    </div>
+  </nav>
+
+  <!-- ABOVE FOLD -->
+  <div class="above-fold">
+
+    <div class="avatar">
+      <img src="assets/avatar.png" alt="Nitesh Kothari">
+    </div>
+
+    <h1>Nitesh Kothari</h1>
+    <button type="button" class="email-copy" id="copy-email" aria-label="Copy email niteshsachinkothari@gmail.com (or press C)">
+      <span class="email-text">niteshsachinkothari [at] gmail [dot] com</span>
+      <span class="email-icon">
+        <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+      </span>
+      <span class="email-tip">Copied!</span>
+    </button>
+    <div class="meta">Computer Science, Applied Mathematics &amp; Economics</div>
+
+    <!-- TOP LINKS — zoom on hover, browser-chrome preview card -->
+    <div class="links">
+
+      <div class="link-item">
+        <a href="https://github.com/nitkots" target="_blank" rel="noopener">GitHub</a>
+        <div class="preview-card">
+          <div class="b-chrome">
+            <div class="b-dots">
+              <span style="background:#ff5f57;"></span>
+              <span style="background:#febc2e;"></span>
+              <span style="background:#28c840;"></span>
+            </div>
+            <div class="b-url">github.com/nitkots</div>
+          </div>
+          <div class="b-body b-gh">
+            <div class="b-gh-row">
+              <div class="b-gh-avatar">
+                <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              </div>
+              <span class="b-gh-username">nitkots</span>
+            </div>
+            <div class="b-gh-repos">
+              <div class="b-gh-repo">portfolio</div>
+              <div class="b-gh-repo">Music-Recommendation-System</div>
+              <div class="b-gh-repo">Research-Paper-Source-Code</div>
+              <div class="b-gh-repo">SleepSafe-ML-Code</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a href="https://www.linkedin.com/in/nitesh-kothari-205504299/" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="preview-card">
+          <div class="b-chrome">
+            <div class="b-dots">
+              <span style="background:#ff5f57;"></span>
+              <span style="background:#febc2e;"></span>
+              <span style="background:#28c840;"></span>
+            </div>
+            <div class="b-url">linkedin.com/in/nitesh-kothari</div>
+          </div>
+          <div class="b-body b-li">
+            <div class="b-li-row">
+              <div class="b-li-photo"></div>
+              <div>
+                <div class="b-li-name">Nitesh Kothari</div>
+                <div class="b-li-sub">linkedin.com/in/nitesh-kothari</div>
+                <div class="b-li-badge">Connect</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a href="https://x.com/nitkots" target="_blank" rel="noopener">X</a>
+        <div class="preview-card">
+          <div class="b-chrome">
+            <div class="b-dots">
+              <span style="background:#ff5f57;"></span>
+              <span style="background:#febc2e;"></span>
+              <span style="background:#28c840;"></span>
+            </div>
+            <div class="b-url">x.com/nitkots</div>
+          </div>
+          <div class="b-body b-x">
+            <div class="b-x-row">
+              <div class="b-x-avatar">
+                <svg viewBox="0 0 24 24" fill="#fff"><path d="M18.9 2H22l-7.5 8.6L23.3 22h-6.9l-5.4-7-6.2 7H1.6l8-9.2L1 2h7.1l4.9 6.4L18.9 2Zm-1.2 18h1.9L7.4 4H5.4L17.7 20Z"/></svg>
+              </div>
+              <div>
+                <div class="b-x-name">Nitesh Kothari</div>
+                <div class="b-x-handle">@nitkots</div>
+              </div>
+            </div>
+            <div class="b-x-badge">Follow</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BIO -->
+    <div class="bio">
+      <p>I'm interested in building technology that augments human capability and love building 0→1 software systems at the intersection of applied research and early-stage product development.</p>
+      <p>I'm a <span class="bio-link-item"><a href="https://www.goodexperience.com/columns/03/0418.davinci.html" target="_blank" rel="noopener">disciple of experience</a><span class="preview-card">
+          <span class="b-chrome">
+            <span class="b-dots">
+              <span style="background:#ff5f57;"></span>
+              <span style="background:#febc2e;"></span>
+              <span style="background:#28c840;"></span>
+            </span>
+            <span class="b-url">goodexperience.com/&hellip;/davinci.html</span>
+          </span>
+          <span class="b-body b-img">
+            <img src="assets/disciple-of-experience.jpg" alt="Wanderer above the Sea of Fog, Caspar David Friedrich">
+            <span class="b-img-caption">Wanderer above the Sea of Fog &mdash; Caspar David Friedrich</span>
+          </span>
+        </span></span>. I like to side quest, and I think everyone should. I'm drawn to anything that keeps me up at night and makes my brain feel alive.</p>
+      <p>Above all, I'm a techno-pragmatist. Someone who believes that the optimal use of technology can usher in an age of abundance, agency, and opportunity for humanity.</p>
+      <p>Currently, I'm an AI and Software Developer Intern at <span class="bio-link-item"><a href="https://www.wovvtech.com/" target="_blank" rel="noopener"><strong>WovV</strong></a><span class="preview-card">
+          <span class="b-chrome">
+            <span class="b-dots">
+              <span style="background:#ff5f57;"></span>
+              <span style="background:#febc2e;"></span>
+              <span style="background:#28c840;"></span>
+            </span>
+            <span class="b-url">wovvtech.com</span>
+          </span>
+          <span class="b-body b-wovv">
+            <span class="b-wovv-mark"><img src="assets/wovv-icon.svg" alt=""></span>
+            <span class="b-wovv-name">WovV Technologies</span>
+            <span class="b-wovv-role">AI &amp; Software Developer Intern</span>
+            <span class="b-wovv-badge">Visit</span>
+          </span>
+        </span></span>.</p>
+    </div>
+
+    <div class="scroll-hint">↓</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BELOW FOLD -->
+  <div class="below-fold">
+
+    <!-- EDUCATION -->
+    <section>
+      <div class="section-label">Education</div>
+      <div class="edu-row">
+        <div class="edu-mark">
+          <img src="assets/uw-crest-color-web-digital.png" alt="University of Wisconsin-Madison">
+        </div>
+        <div class="edu-body">
+          <div class="edu-school">University of Wisconsin-Madison</div>
+          <div class="edu-degree">B.Sc., Computer Science &amp; Data Science</div>
+          <div class="edu-degree">Minor, Mathematics</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var EMAIL = 'niteshsachinkothari@gmail.com';
+  var btn = document.getElementById('copy-email');
+  if (!btn) return;
+  var resetTimer;
+  function triggerCopy(){
+    navigator.clipboard.writeText(EMAIL).then(function(){
+      btn.classList.add('pressed');
+      setTimeout(function(){ btn.classList.remove('pressed'); }, 150);
+      btn.classList.add('copied');
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(function(){ btn.classList.remove('copied'); }, 1600);
+    });
+  }
+  btn.addEventListener('click', triggerCopy);
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key.toLowerCase() !== 'c') return;
+    triggerCopy();
+  });
+})();
+</script>
+</body>
+</html>
