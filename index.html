@@ -49,6 +49,16 @@ nav a {
 }
 nav a.active { font-weight: 500; border-bottom-color: #000; }
 nav a:hover  { border-bottom-color: #000; }
+.nav-soon {
+  color: #bbb;
+  font-size: 13.5px;
+  font-weight: 400;
+  font-family: var(--sans);
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
+  cursor: default;
+  user-select: none;
+}
 
 /* ── ABOVE FOLD ── */
 .above-fold {
@@ -577,7 +587,7 @@ section { margin-top: 56px; }
   <nav>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
-      <a href="work.html">Work</a>
+      <span class="nav-soon" title="Coming soon">Work</span>
     </div>
   </nav>
 
