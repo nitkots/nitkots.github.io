@@ -105,7 +105,8 @@ nav a:hover { border-bottom-color: var(--ink); }
 .ghost-loading { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: #c8c2b3; text-align: center; padding: 0 6px; }
 
 /* LOGO PLATE (project logo image, filled and cropped to the same box as everything else) */
-.plate.logo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.plate.logo img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; transform: scale(1.8); }
+.plate.logo.flickr-bg img { transform: scale(2.4); }
 .plate.axiom-bg { background: #fff; }
 .plate.flickr-bg { background: #192236; }
 
@@ -169,7 +170,7 @@ nav a:hover { border-bottom-color: var(--ink); }
       </div>
 
       <div class="row">
-        <div class="plate logo axiom-bg"><img src="assets/axiom-logo-crop.png" alt="Axiom logo"></div>
+        <div class="plate logo axiom-bg"><img src="assets/axiom-logo.png" alt="Axiom logo"></div>
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Stack</span>Tauri (Rust) · React · Python · Gemma 3 4B</span></div>
           <a class="row-title" href="#">Axiom</a>
@@ -179,7 +180,7 @@ nav a:hover { border-bottom-color: var(--ink); }
       </div>
 
       <div class="row">
-        <div class="plate logo flickr-bg"><img src="assets/flickr-logo-crop.png" alt="Flickr logo"></div>
+        <div class="plate logo flickr-bg"><img src="assets/flickr-logo.png" alt="Flickr logo"></div>
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Stack</span>Python · OpenCV · FFmpeg · React</span></div>
           <a class="row-title" href="#">Flickr</a>
@@ -200,7 +201,7 @@ nav a:hover { border-bottom-color: var(--ink); }
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Field</span>Machine Learning · Renewable Energy</span><span><span class="k">Publication</span>IJCSE, Aug 2024</span></div>
           <a class="row-title" href="#">An Investigation into the Applications of Machine Learning Algorithms on Wind Speed Prediction</a>
-          <p class="row-desc">Benchmarks five regression models (Linear Regression, KNN, Decision Trees, XGBoost, and Random Forest) on 50,530 readings from a wind turbine in Turkey, testing which one predicts wind speed most reliably. Random Forest Regression came out on top, backing its use for real-time forecasting to improve turbine efficiency and maintenance planning. The paper has since picked up 500+ downloads and 1,000+ views.</p>
+          <p class="row-desc">Benchmarks five regression models on 50,530 readings from a wind turbine in Turkey, testing which one predicts wind speed most reliably. Random Forest Regression came out on top, backing its use for real-time forecasting to improve turbine efficiency and maintenance planning. The paper has since picked up 500+ downloads and 1,000+ views.</p>
           <div class="row-actions"><a href="papers/wind-speed-ml.pdf" target="_blank" rel="noopener">PDF ↗</a></div>
         </div>
       </div>
