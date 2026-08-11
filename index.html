@@ -60,6 +60,58 @@ nav a:hover  { border-bottom-color: #000; }
   user-select: none;
 }
 
+/* NAV COPY EMAIL (press C) */
+.copy-email {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.copy-email:focus-visible { outline: 2px solid #cfcfae; outline-offset: 4px; border-radius: 4px; }
+.copy-email .key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  border: 1px solid #e0ddc9;
+  border-bottom: 2px solid #d8d4bd;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  transition: transform 0.15s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.copy-email:hover .key { border-color: #c9c5ac; }
+.copy-email.pressed .key { transform: scale(0.88) translateY(1px); }
+.copy-email.copied .key {
+  background: #eafcef;
+  border-color: #a8e6bb;
+  color: #1f9d4c;
+}
+.copy-email .key svg { width: 11px; height: 11px; display: none; }
+.copy-email.copied .key svg { display: block; }
+.copy-email.copied .key .key-letter { display: none; }
+.copy-email .ce-short { display: none; }
+@media (max-width: 640px) {
+  .copy-email .ce-full { display: none; }
+  .copy-email .ce-short { display: inline; }
+}
+
 /* ── ABOVE FOLD ── */
 .above-fold {
   min-height: 92vh;
@@ -475,6 +527,7 @@ h1 {
   transform-origin: center bottom;
 }
 .bio a:hover { text-decoration-color: #000; transform: scale(1.08); }
+.bio a.no-zoom:hover { transform: none; }
 
 /* Bio link with a hover preview card (same pattern as the top links) */
 .bio-link-item { position: relative; display: inline-block; }
@@ -585,9 +638,18 @@ section { margin-top: 56px; }
 
   <!-- NAV -->
   <nav>
+    <button type="button" class="copy-email js-copy-email" id="copy-email-nav" aria-label="Press C to copy email niteshsachinkothari@gmail.com">
+      <span class="ce-full">Press</span>
+      <span class="key">
+        <span class="key-letter">C</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg>
+      </span>
+      <span class="ce-full">to copy my email</span>
+      <span class="ce-short">Copy email</span>
+    </button>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
-      <span class="nav-soon" title="Coming soon">Work</span>
+      <a href="work.html">Work</a>
     </div>
   </nav>
 
@@ -599,7 +661,7 @@ section { margin-top: 56px; }
     </div>
 
     <h1>Nitesh Kothari</h1>
-    <button type="button" class="email-copy" id="copy-email" aria-label="Copy email niteshsachinkothari@gmail.com (or press C)">
+    <button type="button" class="email-copy js-copy-email" id="copy-email" aria-label="Copy email niteshsachinkothari@gmail.com (or press C)">
       <span class="email-text">niteshsachinkothari [at] gmail [dot] com</span>
       <span class="email-icon">
         <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -695,7 +757,7 @@ section { margin-top: 56px; }
     <!-- BIO -->
     <div class="bio">
       <p>I'm interested in building technology that augments human capability and love building 0→1 software systems at the intersection of applied research and early-stage product development.</p>
-      <p>I'm a <span class="bio-link-item"><a href="https://www.goodexperience.com/columns/03/0418.davinci.html" target="_blank" rel="noopener">disciple of experience</a><span class="preview-card">
+      <p>I'm a <span class="bio-link-item"><a href="https://www.goodexperience.com/columns/03/0418.davinci.html" target="_blank" rel="noopener" class="no-zoom">disciple of experience</a><span class="preview-card">
           <span class="b-chrome">
             <span class="b-dots">
               <span style="background:#ff5f57;"></span>
@@ -757,19 +819,23 @@ section { margin-top: 56px; }
 <script>
 (function(){
   var EMAIL = 'niteshsachinkothari@gmail.com';
-  var btn = document.getElementById('copy-email');
-  if (!btn) return;
+  var btns = document.querySelectorAll('.js-copy-email');
+  if (!btns.length) return;
   var resetTimer;
   function triggerCopy(){
     navigator.clipboard.writeText(EMAIL).then(function(){
-      btn.classList.add('pressed');
-      setTimeout(function(){ btn.classList.remove('pressed'); }, 150);
-      btn.classList.add('copied');
+      btns.forEach(function(btn){
+        btn.classList.add('pressed');
+        setTimeout(function(){ btn.classList.remove('pressed'); }, 150);
+        btn.classList.add('copied');
+      });
       clearTimeout(resetTimer);
-      resetTimer = setTimeout(function(){ btn.classList.remove('copied'); }, 1600);
+      resetTimer = setTimeout(function(){
+        btns.forEach(function(btn){ btn.classList.remove('copied'); });
+      }, 1600);
     });
   }
-  btn.addEventListener('click', triggerCopy);
+  btns.forEach(function(btn){ btn.addEventListener('click', triggerCopy); });
   document.addEventListener('keydown', function(e){
     var tag = (e.target && e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
