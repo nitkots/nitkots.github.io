@@ -105,6 +105,7 @@ nav a:hover { border-bottom-color: var(--ink); }
 .ghost-loading { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: #c8c2b3; text-align: center; padding: 0 6px; }
 
 /* LOGO PLATE (project logo image, filled and cropped to the same box as everything else) */
+.plate.logo { cursor: pointer; }
 .plate.logo img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; transform: scale(1.8); }
 .plate.logo.flickr-bg img { transform: scale(2.4); }
 .plate.axiom-bg { background: #fff; }
@@ -160,30 +161,30 @@ nav a:hover { border-bottom-color: var(--ink); }
     <div class="row-list">
 
       <div class="row">
-        <a class="plate ghost" data-pdf="assets/sleepsafe-deck.pdf" aria-label="Preview SleepSafe deck"><div class="ghost-loading">Loading…</div></a>
+        <a class="plate ghost" href="https://github.com/nitkots/SleepSafe-ML-Code" target="_blank" rel="noopener" data-pdf="assets/sleepsafe-deck.pdf" aria-label="Open SleepSafe repo"><div class="ghost-loading">Loading…</div></a>
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Stack</span>Python · scikit-learn · Raspberry Pi</span></div>
-          <a class="row-title" href="#">SleepSafe</a>
+          <a class="row-title" href="https://github.com/nitkots/SleepSafe-ML-Code" target="_blank" rel="noopener">SleepSafe</a>
           <p class="row-desc">A low-cost wearable that clips onto the chest during sleep, recording breathing audio and motion to flag sleep-disordered breathing and apnea before symptoms turn severe. A multi-layer ML model classifies 8 distinct breathing conditions on-device, for over 90% less than a hospital polysomnography workup.</p>
           <div class="row-actions"><a href="https://github.com/nitkots/SleepSafe-ML-Code" target="_blank" rel="noopener">Repo ↗</a><a href="assets/sleepsafe-deck.pdf" target="_blank" rel="noopener">Deck ↗</a></div>
         </div>
       </div>
 
       <div class="row">
-        <div class="plate logo axiom-bg"><img src="assets/axiom-logo.png" alt="Axiom logo"></div>
+        <a class="plate logo axiom-bg" href="https://github.com/Shrithan/Axiom" target="_blank" rel="noopener" aria-label="Open Axiom repo"><img src="assets/axiom-logo.png" alt="Axiom logo"></a>
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Stack</span>Tauri (Rust) · React · Python · Gemma 3 4B</span></div>
-          <a class="row-title" href="#">Axiom</a>
+          <a class="row-title" href="https://github.com/Shrithan/Axiom" target="_blank" rel="noopener">Axiom</a>
           <p class="row-desc">A local-first data-loss-prevention system, built as two native desktop apps. Sentry watches open documents and the clipboard on an employee's machine, then redacts flagged PII directly inside PDFs and Office files, using Google's Gemma 3 4B for contextual detection alongside regex for structured data like card numbers. Console gives security teams a live view of organizational risk without any file ever touching a network.</p>
           <div class="row-actions"><a href="https://github.com/Shrithan/Axiom" target="_blank" rel="noopener">Repo ↗</a></div>
         </div>
       </div>
 
       <div class="row">
-        <div class="plate logo flickr-bg"><img src="assets/flickr-logo.png" alt="Flickr logo"></div>
+        <a class="plate logo flickr-bg" href="https://github.com/Shrithan/Flickr" target="_blank" rel="noopener" aria-label="Open Flickr repo"><img src="assets/flickr-logo.png" alt="Flickr logo"></a>
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Stack</span>Python · OpenCV · FFmpeg · React</span></div>
-          <a class="row-title" href="#">Flickr</a>
+          <a class="row-title" href="https://github.com/Shrithan/Flickr" target="_blank" rel="noopener">Flickr</a>
           <p class="row-desc">A web app that scans uploaded video for seizure-risk visuals, such as rapid flashes, harsh contrast edges, and sudden color shifts, using frame-by-frame luminance analysis, and returns a timestamped risk map. From there it can auto-cut the flagged segments, or leave everything in and apply localized dimming and contrast smoothing so the footage stays intact but safer to watch. Built during a 24-hour hackathon with three teammates.</p>
           <div class="row-actions"><a href="https://github.com/Shrithan/Flickr" target="_blank" rel="noopener">Repo ↗</a></div>
         </div>
@@ -197,20 +198,20 @@ nav a:hover { border-bottom-color: var(--ink); }
     <div class="row-list">
 
       <div class="row">
-        <a class="plate ghost" data-pdf="papers/wind-speed-ml.pdf" aria-label="Preview wind speed prediction paper"><div class="ghost-loading">Loading…</div></a>
+        <a class="plate ghost" href="papers/wind-speed-ml.pdf" target="_blank" rel="noopener" data-pdf="papers/wind-speed-ml.pdf" aria-label="Open wind speed prediction paper"><div class="ghost-loading">Loading…</div></a>
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Field</span>Machine Learning · Renewable Energy</span><span><span class="k">Publication</span>IJCSE, Aug 2024</span></div>
-          <a class="row-title" href="#">An Investigation into the Applications of Machine Learning Algorithms on Wind Speed Prediction</a>
+          <a class="row-title" href="papers/wind-speed-ml.pdf" target="_blank" rel="noopener">An Investigation into the Applications of Machine Learning Algorithms on Wind Speed Prediction</a>
           <p class="row-desc">Benchmarks five regression models on 50,530 readings from a wind turbine in Turkey, testing which one predicts wind speed most reliably. Random Forest Regression came out on top, backing its use for real-time forecasting to improve turbine efficiency and maintenance planning. The paper has since picked up 500+ downloads and 1,000+ views.</p>
           <div class="row-actions"><a href="papers/wind-speed-ml.pdf" target="_blank" rel="noopener">PDF ↗</a></div>
         </div>
       </div>
 
       <div class="row">
-        <a class="plate ghost" data-pdf="papers/math-ia-recurrence-relations.pdf" aria-label="Preview recurrence relations paper"><div class="ghost-loading">Loading…</div></a>
+        <a class="plate ghost" href="papers/math-ia-recurrence-relations.pdf" target="_blank" rel="noopener" data-pdf="papers/math-ia-recurrence-relations.pdf" aria-label="Open recurrence relations paper"><div class="ghost-loading">Loading…</div></a>
         <div class="row-body">
           <div class="row-meta"><span><span class="k">Field</span>Pure Mathematics</span></div>
-          <a class="row-title" href="#">Limits of the Ratio of Consecutive Terms in Second-Order Recurrence Relations</a>
+          <a class="row-title" href="papers/math-ia-recurrence-relations.pdf" target="_blank" rel="noopener">Limits of the Ratio of Consecutive Terms in Second-Order Recurrence Relations</a>
           <p class="row-desc">Why does the ratio of consecutive terms in Fibonacci, Lucas, and other second-order recurrence relations always converge to the golden ratio, no matter the starting values? Proves the general limit for any relation of the form G<sub>n</sub> = xG<sub>n-1</sub> + yG<sub>n-2</sub>.</p>
           <div class="row-actions"><a href="papers/math-ia-recurrence-relations.pdf" target="_blank" rel="noopener">PDF ↗</a></div>
         </div>
