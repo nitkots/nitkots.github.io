@@ -5,19 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nitesh Kothari</title>
 <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
+<link rel="stylesheet" href="assets/fonts.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
+  --bg: #eae8e1;
   --serif: 'EB Garamond', Georgia, serif;
   --sans:  'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 body {
   font-family: var(--sans);
-  background: #ffffeb;
+  background: var(--bg);
   color: #000;
   font-size: 15px;
   line-height: 1.6;
@@ -28,6 +30,99 @@ body {
   max-width: 780px;
   margin: 0 auto;
   padding: 0 36px 100px;
+}
+
+/* Oversized opening, animated with native scroll and eased visual updates. */
+html { scroll-behavior: smooth; }
+.opening { height: 300vh; height: 300svh; }
+.opening-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg);
+  isolation: isolate;
+}
+.opening-art {
+  --curl: 0px;
+  --lift: 0;
+  position: absolute;
+  height: 82%;
+  max-width: 76%;
+  aspect-ratio: 1200 / 1539;
+  transform-origin: 18% 45%;
+  will-change: transform;
+}
+.opening-art::before {
+  content: '';
+  position: absolute;
+  inset: 4% 3%;
+  background: rgba(51, 52, 47, 0.2);
+  filter: blur(18px);
+  opacity: calc(0.2 + var(--lift) * 0.65);
+  transform: translate3d(calc(var(--lift) * 14px), calc(var(--lift) * 22px), 0);
+  pointer-events: none;
+}
+.opening-paper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  background: #f2efe5;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--curl)), calc(100% - var(--curl)) 100%, 0 100%);
+}
+.opening-art::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: var(--curl);
+  height: var(--curl);
+  background: linear-gradient(135deg, #faf7ee 15%, #e8e2d4 46%, #b5ae9e 70%, #f5f1e6 74%);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  pointer-events: none;
+}
+.opening-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Size Test 1: desktop clamp(80px, 17vw, 280px);
+   mobile clamp(76px, 24vw, 154px). Retained here for comparison.
+   Size Test 2 (active): smaller type gives the artwork more breathing room. */
+.opening-name {
+  position: relative;
+  z-index: 1;
+  font-family: var(--serif);
+  font-size: clamp(72px, 14vw, 220px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  color: #fff;
+  mix-blend-mode: difference;
+  text-align: center;
+  padding: 0 5vw 0.12em;
+  will-change: transform;
+}
+.opening-name span { display: inline-block; }
+#website { position: relative; scroll-margin-top: 24px; }
+@media (max-width: 640px) {
+  .opening-art { height: 72%; max-width: 78%; }
+  .opening-paper { padding: 8px; }
+  .opening-name { font-size: clamp(64px, 21vw, 128px); line-height: 0.95; }
+  .opening-name span { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .opening { height: 100vh; height: 100svh; }
+  .opening-sticky { position: relative; }
+  .opening-name, .opening-art { will-change: auto; }
 }
 
 /* ── NAV ── */
@@ -115,8 +210,7 @@ nav a:hover  { border-bottom-color: #000; }
 
 /* ── ABOVE FOLD ── */
 .above-fold {
-  min-height: 92vh;
-  padding-top: 12vh;
+  padding-top: clamp(48px, 8vh, 88px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -548,42 +642,25 @@ h1 {
   padding: 20px 10px 8px;
 }
 
-/* ── SCROLL HINT ── */
-.scroll-hint {
-  margin-top: 40px;
-  font-size: 12px;
-  color: #ccc;
-  font-family: var(--sans);
-  letter-spacing: 0.04em;
-}
-
-/* ── DIVIDER ── */
-.divider {
-  width: 40px;
-  height: 1px;
-  background: #e8e8e8;
-  margin: 64px auto 0;
-}
-
 /* ── SECTIONS ── */
-.below-fold { padding-top: 0; }
-section { margin-top: 56px; }
+.below-fold { max-width: 660px; margin: 36px auto 0; }
+.education { padding-top: 24px; border-top: 1px solid rgba(51, 52, 47, 0.16); }
 .section-label {
   font-family: var(--sans);
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #aaa;
-  margin-bottom: 28px;
+  color: #6a685f;
+  margin-bottom: 18px;
 }
 
 /* ── EDUCATION ── */
 .edu-row {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 4px 0 0;
+  align-items: center;
+  gap: 18px;
+  padding: 0;
 }
 .edu-mark {
   width: 56px;
@@ -607,8 +684,9 @@ section { margin-top: 56px; }
 .edu-school {
   font-family: var(--sans);
   font-size: 15px;
-  font-weight: 700;
-  color: #0f0f0f;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #33342f;
   letter-spacing: -0.1px;
   margin-bottom: 5px;
 }
@@ -626,7 +704,7 @@ section { margin-top: 56px; }
   nav { padding: 24px 0 0; gap: 16px; }
   .nav-links { gap: 16px; }
   nav a { font-size: 13px; }
-  .above-fold { min-height: 85vh; padding-top: 8vh; }
+  .above-fold { padding-top: 40px; }
   h1 { font-size: 26px; }
   .bio { max-width: 100%; }
   .edu-mark { width: 44px; height: 44px; }
@@ -635,7 +713,13 @@ section { margin-top: 56px; }
 </style>
 </head>
 <body>
-<div class="container">
+<header class="opening" aria-label="Welcome">
+  <div class="opening-sticky">
+    <div class="opening-art"><div class="opening-paper"><img src="assets/favicon.jpg" alt="Painting of a lone figure looking across mist-covered mountains" width="1200" height="1539" fetchpriority="high"></div></div>
+    <div class="opening-name" aria-hidden="true"><span>Nitesh</span> <span>Kothari</span></div>
+  </div>
+</header>
+<div class="container" id="website">
 
   <!-- NAV -->
   <nav>
@@ -791,17 +875,15 @@ section { margin-top: 56px; }
         </span></span>.</p>
     </div>
 
-    <div class="scroll-hint">↓</div>
   </div>
 
-  <div class="divider"></div>
 
   <!-- BELOW FOLD -->
   <div class="below-fold">
 
     <!-- EDUCATION -->
-    <section>
-      <div class="section-label">Education</div>
+    <section class="education" aria-labelledby="education-heading">
+      <h2 class="section-label" id="education-heading">Education</h2>
       <div class="edu-row">
         <div class="edu-mark">
           <img src="assets/uw-crest-color-web-digital.png" alt="University of Wisconsin-Madison">
@@ -818,6 +900,57 @@ section { margin-top: 56px; }
 </div>
 
 <script>
+(function(){
+  var opening = document.querySelector('.opening');
+  var name = document.querySelector('.opening-name');
+  var art = document.querySelector('.opening-art');
+  var sticky = document.querySelector('.opening-sticky');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var current = 0, target = 0, frame = 0, lastTime = 0;
+  var jiggle = 0, velocity = 0;
+  function draw(time) {
+    var delta = lastTime ? Math.min(time - lastTime, 32) : 16;
+    lastTime = time;
+    // A small damped spring follows scroll momentum and settles with a soft bounce.
+    var springTarget = Math.max(-12, Math.min(12, (target - current) * 90));
+    var step = delta / 1000;
+    velocity += ((springTarget - jiggle) * 180 - velocity * 14) * step;
+    jiggle += velocity * step;
+    current += (target - current) * (1 - Math.exp(-delta / 110));
+    if (Math.abs(target - current) < 0.0001) current = target;
+    var settled = current === target && Math.abs(jiggle) < 0.01 && Math.abs(velocity) < 0.01;
+    if (settled) jiggle = velocity = 0;
+    var eased = current * current * (3 - 2 * current);
+    name.style.transform = 'translate3d(0,' + (-eased * 45 + jiggle) + 'px,0) rotate(' + (jiggle * 0.07) + 'deg)';
+    art.style.transform = 'perspective(1400px) translate3d(0,' + (eased * 65) + 'px,0) rotateY(' + (-eased * 9) + 'deg) rotateX(' + (eased * 3) + 'deg) rotateZ(' + (-eased * 1.5) + 'deg) scale(' + (1 - eased * 0.12) + ')';
+    art.style.setProperty('--curl', (eased * Math.min(64, art.clientWidth * 0.16)) + 'px');
+    art.style.setProperty('--lift', eased);
+    frame = !settled ? requestAnimationFrame(draw) : 0;
+    if (!frame) lastTime = 0;
+  }
+  function update() {
+    if (reducedMotion.matches) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      lastTime = 0;
+      current = target = 0;
+      jiggle = velocity = 0;
+      name.style.transform = '';
+      art.style.transform = '';
+      art.style.removeProperty('--curl');
+      art.style.removeProperty('--lift');
+      return;
+    }
+    var scrollDistance = Math.max(1, opening.offsetHeight - sticky.clientHeight);
+    target = Math.max(0, Math.min(1, -opening.getBoundingClientRect().top / scrollDistance));
+    if (!frame) frame = requestAnimationFrame(draw);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  reducedMotion.addEventListener('change', update);
+  update();
+})();
+
 (function(){
   var EMAIL = 'niteshsachinkothari@gmail.com';
   var btns = document.querySelectorAll('.js-copy-email');
