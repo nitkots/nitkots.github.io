@@ -1,0 +1,71 @@
+/* Motion adapted from Colin Lienard's Contacts.svelte; see social-preview-LICENSE.txt. */
+html.social-previews-ready .link-item .preview-card,
+html.social-previews-ready .bio-link-item .preview-card { display: none; }
+.social-preview {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  position: fixed;
+  z-index: 200;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 150ms, visibility 150ms;
+}
+.social-preview.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+.social-preview:focus-visible { outline: 2px solid #0a66c2; outline-offset: 4px; }
+.social-preview.is-moving {
+  transition: left 300ms cubic-bezier(.215,.61,.355,1),
+    width 300ms cubic-bezier(.215,.61,.355,1),
+    height 300ms cubic-bezier(.215,.61,.355,1), opacity 150ms, visibility 150ms;
+}
+.social-preview .social-preview-content {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  width: 100%;
+  transform: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-preview, .social-preview.is-moving { transition: none; }
+}
+
+/* Minimal GitHub preview. */
+.preview-card.github-profile { color: #f0f3f6; background: #0d1117; }
+.github-profile-body { display: flex; align-items: center; gap: 10px; padding: 16px; }
+.github-profile-avatar { display: block; width: 40px; height: 40px; flex: 0 0 40px; border-radius: 50%; object-fit: cover; }
+.github-profile-identity { flex: 1; min-width: 0; }
+.github-profile-name { font-size: 13px; font-weight: 600; line-height: 1.4; }
+.github-profile-handle { color: #919ba6; font-size: 11px; }
+.github-profile-logo { width: 20px; height: 20px; flex: 0 0 20px; color: #919ba6; }
+.github-projects { list-style: none; margin: 0 16px; padding: 0 0 8px; border-top: 1px solid #30363d; }
+.github-projects li { padding: 9px 0; }
+.github-projects li + li { border-top: 1px solid #21262d; }
+.github-project-name { display: block; color: #79b8ff; font-size: 12px; font-weight: 500; line-height: 1.4; }
+.github-project-description { display: block; margin-top: 2px; color: #919ba6; font-size: 10px; line-height: 1.5; }
+
+.preview-card.profile-preview { font-family: var(--sans); color: #191919; background: #fff; }
+.profile-banner { display: block; width: 100%; height: auto; object-fit: cover; }
+.linkedin-profile .profile-banner { aspect-ratio: 4 / 1; }
+.x-profile .profile-banner { aspect-ratio: 3 / 1; }
+.profile-details { position: relative; padding: 42px 16px 18px; }
+.profile-avatar { position: absolute; top: -30px; left: 14px; width: 64px; height: 64px; object-fit: cover; border: 3px solid #fff; border-radius: 50%; }
+.profile-name { font-size: 16px; font-weight: 650; line-height: 1.4; }
+.profile-subtitle { margin-top: 3px; font-size: 11px; line-height: 1.5; color: #606060; }
+.profile-cta { position: absolute; right: 14px; top: 10px; padding: 3px 13px; border-radius: 20px; background: #0a66c2; color: #fff; font-size: 11px; font-weight: 600; }
+.preview-card.x-profile { background: #000; color: #f3f3f3; }
+.x-profile .profile-avatar { border-color: #000; }
+.x-profile .profile-subtitle { color: #93999e; }
+.x-profile .profile-cta { background: #f3f3f3; color: #111; }
