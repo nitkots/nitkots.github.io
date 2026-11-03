@@ -1,0 +1,98 @@
+/* Page transition shared by every page (driven by assets/transition.js).
+   Leaving: a huge dark sphere rises from below until it fills the screen and the
+   destination's name appears. Arriving: the same sphere, already covering the
+   screen at first paint, sinks away to reveal the page.
+   Only `transform` and `opacity` animate, so the GPU moves it without repainting. */
+
+.pt-veil,
+html.pt-entering::after {
+  /* A dome: the top of a huge sphere. Its curved top edge spans the whole screen,
+     so the motion stays visible almost the entire time it rises or sinks.
+     Covering position: the dome's top sits 35vh above the screen. */
+  position: fixed;
+  z-index: 9999;
+  left: -20vw; top: -35vh;
+  width: 140vw; height: 140vh;
+  border-radius: 50% 50% 0 0 / 35vh 35vh 0 0;
+  background: radial-gradient(ellipse 55% 40% at 38% 40%, #2c2622 0%, #15120f 55%, #0b0a09 100%);
+  box-shadow: inset 0 3px 0 rgba(160, 126, 97, 0.35); /* thin bronze rim along the curve */
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ---------- leaving ---------- */
+.pt-veil {
+  transform: translate3d(0, 140vh, 0); /* fully below the screen */
+  transition: transform .75s cubic-bezier(.6, 0, .4, 1);
+}
+.pt-veil.is-covering { transform: translate3d(0, 0, 0); pointer-events: auto; }
+.pt-veil.no-anim { transition: none; }
+
+.pt-label {
+  position: absolute; left: 50%; top: calc(85vh - 34px); /* above the quote; the pair sits at the screen's centre */
+  transform: translate(-50%, -50%);
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-weight: 300;
+  font-size: clamp(16px, 1.6vw, 21px);
+  letter-spacing: 0.55em;
+  padding-left: 0.55em; /* optically re-centre the tracked letters */
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #ebe3d4;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.pt-veil.show-label .pt-label { opacity: 1; }
+
+/* The quote, under the destination's name */
+.pt-quote {
+  position: absolute; left: 50%; top: calc(85vh + 22px); /* just below the name */
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 48px));
+  margin: 0;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .45s ease .12s; /* follows the name in */
+}
+.pt-veil.show-label .pt-quote { opacity: 1; }
+.pt-quote blockquote {
+  margin: 0;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.4;
+  color: #d9d1c4;
+  text-wrap: balance;
+}
+.pt-quote figcaption {
+  margin-top: 14px;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-weight: 300;
+  font-size: 10.5px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #8f8578;
+}
+.pt-quote figcaption::before { content: '\2014\00a0'; }
+
+/* ---------- arriving ---------- */
+/* Added by a tiny inline script in <head> before first paint, so the new page
+   never flashes. The reveal doesn't wait for the page's scripts. */
+html.pt-entering::after {
+  content: '';
+  transform: translate3d(0, 0, 0);
+  animation: pt-sink 1s cubic-bezier(.35, 0, .15, 1) .06s forwards paused; /* quick under the edge, then glides */
+}
+/* Started on the first painted frame (pt-go), so the whole sink is visible. */
+html.pt-entering.pt-go::after { animation-play-state: running; }
+@keyframes pt-sink {
+  to { transform: translate3d(0, 140vh, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pt-veil { transform: none; opacity: 0; transition: opacity .2s ease; }
+  .pt-veil.is-covering { opacity: 1; }
+  html.pt-entering::after { animation: pt-fade .25s ease forwards; }
+  @keyframes pt-fade { to { opacity: 0; } }
+}

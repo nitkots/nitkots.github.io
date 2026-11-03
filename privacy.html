@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How niteshkothari.com handles your data: no cookies, no analytics, no tracking.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://niteshkothari.com/privacy.html">
+<meta property="og:title" content="Privacy — Nitesh Kothari">
+<meta property="og:description" content="How niteshkothari.com handles your data: no cookies, no analytics, no tracking.">
+<meta property="og:image" content="https://niteshkothari.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nitesh Kothari at sunset on the water">
+<meta property="og:site_name" content="Nitesh Kothari">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nitkots">
+<meta name="twitter:creator" content="@nitkots">
+<title>Privacy — Nitesh Kothari</title>
+<link rel="canonical" href="https://niteshkothari.com/privacy.html">
+<meta name="author" content="Nitesh Kothari">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#eae8e1">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/transition.css">
+<link rel="stylesheet" href="assets/footer.css">
+<script>try{if(sessionStorage.getItem('pt-label')!==null){var r=document.documentElement;r.classList.add('pt-entering');requestAnimationFrame(function(){requestAnimationFrame(function(){r.classList.add('pt-go')})})}}catch(e){}</script>
+<script src="assets/transition.js" defer></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #eae8e1;
+  --ink: #15130d;
+  --ink-soft: #6a6459;
+  --ink-faint: #b6b1a4;
+  --hairline: #ece8de;
+  --card: #fbf9f3;
+  --accent: #a8502c;
+  --serif: 'EB Garamond', Georgia, serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: var(--sans); font-size: 14.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.container { max-width: 780px; margin: 0 auto; padding: 0 36px 140px; }
+
+/* NAV */
+nav { padding: 32px 0 0; display: flex; align-items: center; gap: 24px; }
+.nav-links { display: flex; gap: 24px; margin-left: auto; }
+nav a { text-decoration: none; color: var(--ink); font-size: 13.5px; font-family: var(--sans); padding-bottom: 2px; border-bottom: 1.5px solid transparent; transition: border-color .15s; }
+nav a.active { font-weight: 500; border-bottom-color: var(--ink); }
+nav a:hover { border-bottom-color: var(--ink); }
+nav a.nk-home { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .02em; }
+
+/* COPY EMAIL (press C) */
+.copy-email {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.copy-email:focus-visible { outline: 2px solid #cfcfae; outline-offset: 4px; border-radius: 4px; }
+.copy-email .key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  border: 1px solid #e0ddc9;
+  border-bottom: 2px solid #d8d4bd;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  transition: transform 0.15s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.copy-email:hover .key { border-color: #c9c5ac; }
+.copy-email.pressed .key { transform: scale(0.88) translateY(1px); }
+.copy-email.copied .key {
+  background: #eafcef;
+  border-color: #a8e6bb;
+  color: #1f9d4c;
+}
+.copy-email .key svg { width: 11px; height: 11px; display: none; }
+.copy-email.copied .key svg { display: block; }
+.copy-email.copied .key .key-letter { display: none; }
+.copy-email .ce-short { display: none; }
+
+/* INTRO */
+.intro { text-align: left; margin: 110px 0 0; max-width: 620px; }
+.intro-heading { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 48px; line-height: 1.12; letter-spacing: -0.025em; color: #33342f; }
+.intro-sub { margin-top: 14px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #9a9489; }
+
+/* LEGAL TEXT */
+.legal { margin-top: 56px; max-width: 600px; }
+.legal h2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #8f8a7f; margin: 40px 0 12px; }
+.legal h2:first-child { margin-top: 0; }
+.legal p, .legal li { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: #3a3631; }
+.legal p + p { margin-top: 12px; }
+.legal ul { margin: 10px 0 0 20px; }
+.legal li + li { margin-top: 6px; }
+.legal a { color: inherit; text-decoration: underline; text-decoration-color: #817c70; text-underline-offset: 2px; }
+.legal a:hover { text-decoration-color: #000; }
+
+@media (max-width: 640px) {
+  .container { padding: 0 22px 60px; }
+  .intro { margin-top: 72px; }
+  .intro-heading { font-size: clamp(34px, 9vw, 42px); }
+  .copy-email .ce-full { display: none; }
+  .copy-email .ce-short { display: inline; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav>
+    <button type="button" class="copy-email" id="copy-email" aria-label="Press C to copy email niteshsachinkothari@gmail.com">
+      <span class="ce-full">Press</span>
+      <span class="key">
+        <span class="key-letter">C</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg>
+      </span>
+      <span class="ce-full">to copy my email</span>
+      <span class="ce-short">Copy email</span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html" class="nk-home" aria-label="Home" data-pt-label="nk">/nk</a>
+    </div>
+  </nav>
+
+  <section class="intro">
+    <h1 class="intro-heading">Privacy</h1>
+    <p class="intro-sub">Last updated November 2026</p>
+  </section>
+
+  <section class="legal">
+    <h2>The short version</h2>
+    <p>This is a personal portfolio. It has no accounts, no forms, no analytics and no advertising, and it doesn't set cookies or track you.</p>
+
+    <h2>What the site stores</h2>
+    <p>While you move between pages, your browser keeps a single flag in its session storage so the page transition can finish smoothly. It never leaves your device and is cleared when you close the tab.</p>
+    <p>The email address is only copied to your clipboard when you click a copy button, press C, or spell the word on the sphere.</p>
+
+    <h2>Services that load parts of the site</h2>
+    <p>Like most websites, some files are loaded from other services. When your browser requests them, those services receive standard request information such as your IP address and browser type, under their own policies:</p>
+    <ul>
+      <li><a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>, which hosts the site.</li>
+      <li><a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts</a>, for the typefaces.</li>
+      <li><a href="https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net" target="_blank" rel="noopener">jsDelivr</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cdnjs (Cloudflare)</a>, for the 3D sphere and PDF previews.</li>
+    </ul>
+
+    <h2>Links elsewhere</h2>
+    <p>Links to GitHub, LinkedIn, X and other sites take you to services with their own privacy policies.</p>
+
+    <h2>If you email me</h2>
+    <p>I'll only use your message and address to reply to you, and I won't share them.</p>
+
+    <h2>Questions</h2>
+    <p>Email <a href="mailto:niteshsachinkothari@gmail.com">niteshsachinkothari@gmail.com</a>.</p>
+  </section>
+
+  <footer class="site-footer">
+    <div class="sf-id">
+      <a class="sf-brand" href="index.html" data-pt-label="nk">Nitesh Kothari</a>
+      <span>&copy; <span class="sf-year">2026</span></span>
+    </div>
+    <div class="sf-links">
+      <a href="mailto:niteshsachinkothari@gmail.com">Contact</a>
+      <a href="privacy.html" aria-current="page">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+    <script>document.querySelectorAll('.sf-year').forEach(function(e){e.textContent=new Date().getFullYear()})</script>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var EMAIL = 'niteshsachinkothari@gmail.com';
+  var copyBtn = document.getElementById('copy-email');
+  if (!copyBtn) return;
+  var resetTimer;
+  var triggerCopy = function(){
+    navigator.clipboard.writeText(EMAIL).then(function(){
+      copyBtn.classList.add('pressed');
+      setTimeout(function(){ copyBtn.classList.remove('pressed'); }, 150);
+      copyBtn.classList.add('copied');
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(function(){ copyBtn.classList.remove('copied'); }, 1600);
+    });
+  };
+  copyBtn.addEventListener('click', triggerCopy);
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key.toLowerCase() !== 'c') return;
+    triggerCopy();
+  });
+})();
+</script>
+</body>
+</html>

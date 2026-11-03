@@ -3,11 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work — Nitesh Kothari</title>
+<meta name="description" content="Projects and research by Nitesh Kothari, including DESK (a Cal Hacks winner), SleepSafe, Axiom and Flickr.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://niteshkothari.com/work.html">
+<meta property="og:title" content="Projects — Nitesh Kothari">
+<meta property="og:description" content="Projects and research by Nitesh Kothari, including DESK (a Cal Hacks winner), SleepSafe, Axiom and Flickr.">
+<meta property="og:image" content="https://niteshkothari.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nitesh Kothari at sunset on the water">
+<meta property="og:site_name" content="Nitesh Kothari">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nitkots">
+<meta name="twitter:creator" content="@nitkots">
+<title>Projects — Nitesh Kothari</title>
+<link rel="canonical" href="https://niteshkothari.com/work.html">
+<meta name="author" content="Nitesh Kothari">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#eae8e1">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "url": "https://niteshkothari.com/work.html", "name": "Projects — Nitesh Kothari", "author": {"@id": "https://niteshkothari.com/#person"}, "isPartOf": {"@id": "https://niteshkothari.com/#website"}, "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "SoftwareSourceCode", "name": "DESK", "codeRepository": "https://github.com/nitkots/DESK", "url": "https://devpost.com/software/desk-k236so", "description": "Turn anything on your desk into a controller with a webcam and your voice. Won at Cal Hacks.", "author": {"@id": "https://niteshkothari.com/#person"}, "programmingLanguage": "Python"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "SoftwareSourceCode", "name": "SleepSafe", "codeRepository": "https://github.com/nitkots/SleepSafe", "description": "An at-home sleep listener that flags breathing pauses and snoring linked to sleep apnea.", "author": {"@id": "https://niteshkothari.com/#person"}, "programmingLanguage": "Python"}}, {"@type": "ListItem", "position": 3, "item": {"@type": "SoftwareSourceCode", "name": "Axiom", "codeRepository": "https://github.com/Shrithan/Axiom", "description": "A local-first data-loss-prevention system built as two native desktop apps.", "author": {"@id": "https://niteshkothari.com/#person"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": "SoftwareSourceCode", "name": "Flickr", "codeRepository": "https://github.com/Shrithan/Flickr", "description": "Scans video for seizure-risk visuals and makes footage safer to watch.", "author": {"@id": "https://niteshkothari.com/#person"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": "ScholarlyArticle", "headline": "An Investigation into the Applications of Machine Learning Algorithms on Wind Speed Prediction", "datePublished": "2024-08", "isPartOf": {"@type": "Periodical", "name": "IJCSE"}, "url": "https://niteshkothari.com/papers/wind-speed-ml.pdf", "author": {"@id": "https://niteshkothari.com/#person"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": "ScholarlyArticle", "headline": "Limits of the Ratio of Consecutive Terms in Second-Order Recurrence Relations", "url": "https://niteshkothari.com/papers/math-ia-recurrence-relations.pdf", "author": {"@id": "https://niteshkothari.com/#person"}}}]}}]}</script>
 <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
-<link rel="stylesheet" href="assets/fonts.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/transition.css">
+<link rel="stylesheet" href="assets/footer.css">
+<script>try{if(sessionStorage.getItem('pt-label')!==null){var r=document.documentElement;r.classList.add('pt-entering');requestAnimationFrame(function(){requestAnimationFrame(function(){r.classList.add('pt-go')})})}}catch(e){}</script>
+<script src="assets/transition.js" defer></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -24,7 +48,7 @@
 }
 html, body { background: var(--bg); color: var(--ink); }
 body { font-family: var(--sans); font-size: 14.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-.container { max-width: 800px; margin: 0 auto; padding: 0 36px 140px; }
+.container { max-width: 780px; margin: 0 auto; padding: 0 36px 140px; }
 
 /* NAV */
 nav { padding: 32px 0 0; display: flex; align-items: center; gap: 24px; }
@@ -32,6 +56,7 @@ nav { padding: 32px 0 0; display: flex; align-items: center; gap: 24px; }
 nav a { text-decoration: none; color: var(--ink); font-size: 13.5px; font-family: var(--sans); padding-bottom: 2px; border-bottom: 1.5px solid transparent; transition: border-color .15s; }
 nav a.active { font-weight: 500; border-bottom-color: var(--ink); }
 nav a:hover { border-bottom-color: var(--ink); }
+nav a.nk-home { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .02em; }
 
 /* COPY EMAIL (press C) */
 .copy-email {
@@ -112,6 +137,9 @@ nav a:hover { border-bottom-color: var(--ink); }
 .plate.logo.flickr-bg img { transform: scale(2.4); }
 .plate.axiom-bg { background: #fff; }
 .plate.flickr-bg { background: #192236; }
+/* SCREENSHOT PLATE (a cropped screenshot that fills the box) */
+.plate.shot { cursor: pointer; }
+.plate.shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ROW BODY */
 .row-body { min-width: 0; }
@@ -150,31 +178,38 @@ nav a:hover { border-bottom-color: var(--ink); }
       <span class="ce-short">Copy email</span>
     </button>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="work.html" class="active">Work</a>
+      <a href="index.html" class="nk-home" aria-label="Home" data-pt-label="nk">/nk</a>
     </div>
   </nav>
 
   <section class="intro">
-    <h1 class="intro-heading">A running record of things built<br> and things written.</h1>
-    <p class="intro-sub">An archive of projects and technical writing from the last few years.</p>
+    <h1 class="intro-heading">A running record of things built<br> and things researched.</h1>
+    <p class="intro-sub">An archive of projects and research from the last few years.</p>
   </section>
 
   <section class="group">
-    <div class="section-label"><span>Projects</span><span class="section-rule"></span><span class="count">02</span></div>
+    <div class="section-label"><span>Projects</span><span class="section-rule"></span><span class="count">04</span></div>
     <div class="row-list">
 
-      <!-- SleepSafe temporarily hidden. Restore this row and set the project count to 03.
       <div class="row">
-        <a class="plate ghost" href="https://github.com/nitkots/SleepSafe-ML-Code" target="_blank" rel="noopener" data-pdf="assets/sleepsafe-deck.pdf" aria-label="Open SleepSafe repo"><div class="ghost-loading">Loading…</div></a>
+        <a class="plate shot" href="https://github.com/nitkots/DESK" target="_blank" rel="noopener" aria-label="Open DESK repo"><img src="assets/desk-thumb.jpg" alt="DESK: a 3D desk under the title DESK, design every surface as a key" width="336" height="432"></a>
         <div class="row-body">
-          <div class="row-meta"><span><span class="k">Stack</span>Python · scikit-learn · Raspberry Pi</span></div>
-          <a class="row-title" href="https://github.com/nitkots/SleepSafe-ML-Code" target="_blank" rel="noopener">SleepSafe</a>
-          <p class="row-desc">A low-cost wearable that clips onto the chest during sleep, recording breathing audio and motion to flag sleep-disordered breathing and apnea before symptoms turn severe. A multi-layer ML model classifies 8 distinct breathing conditions on-device, for over 90% less than a hospital polysomnography workup.</p>
-          <div class="row-actions"><a href="https://github.com/nitkots/SleepSafe-ML-Code" target="_blank" rel="noopener">Repo ↗</a><a href="assets/sleepsafe-deck.pdf" target="_blank" rel="noopener">Deck ↗</a></div>
+          <div class="row-meta"><span><span class="k">Stack</span>Python · YOLOE · OpenCV · Cartesia · Fetch.ai</span><span><span class="k">Award</span>Winner, Cal Hacks</span></div>
+          <a class="row-title" href="https://github.com/nitkots/DESK" target="_blank" rel="noopener">DESK</a>
+          <p class="row-desc">Turn anything on your desk into a controller. Point a webcam at it, say what you want, and a soda can becomes a flight stick, a water bottle dims your screen, and whatever&rsquo;s in reach can mix a DJ set. No new hardware, just the stuff already in front of you. Won at Cal Hacks.</p>
+          <div class="row-actions"><a href="https://github.com/nitkots/DESK" target="_blank" rel="noopener">Repo ↗</a><a href="https://devpost.com/software/desk-k236so" target="_blank" rel="noopener">Devpost ↗</a></div>
         </div>
       </div>
-      -->
+
+      <div class="row">
+        <a class="plate ghost" href="https://github.com/nitkots/SleepSafe" target="_blank" rel="noopener" data-pdf="assets/sleepsafe-deck.pdf" aria-label="Open SleepSafe repo"><div class="ghost-loading">Loading…</div></a>
+        <div class="row-body">
+          <div class="row-meta"><span><span class="k">Stack</span>Python · PyTorch · Raspberry Pi · Databricks · Next.js</span></div>
+          <a class="row-title" href="https://github.com/nitkots/SleepSafe" target="_blank" rel="noopener">SleepSafe</a>
+          <p class="row-desc">A sleep lab that fits on your nightstand. Wear a headset to bed and SleepSafe listens to your breathing all night, catching the pauses and snoring that point to sleep apnea, so you can find out without a night in the hospital.</p>
+          <div class="row-actions"><a href="https://github.com/nitkots/SleepSafe" target="_blank" rel="noopener">Repo ↗</a><a href="assets/sleepsafe-deck.pdf" target="_blank" rel="noopener">Deck ↗</a></div>
+        </div>
+      </div>
 
       <div class="row">
         <a class="plate logo axiom-bg" href="https://github.com/Shrithan/Axiom" target="_blank" rel="noopener" aria-label="Open Axiom repo"><img src="assets/axiom-logo.png" alt="Axiom logo"></a>
@@ -200,7 +235,7 @@ nav a:hover { border-bottom-color: var(--ink); }
   </section>
 
   <section class="group">
-    <div class="section-label"><span>Writing</span><span class="section-rule"></span><span class="count">02</span></div>
+    <div class="section-label"><span>Research</span><span class="section-rule"></span><span class="count">02</span></div>
     <div class="row-list">
 
       <div class="row">
@@ -225,6 +260,19 @@ nav a:hover { border-bottom-color: var(--ink); }
 
     </div>
   </section>
+
+  <footer class="site-footer">
+    <div class="sf-id">
+      <a class="sf-brand" href="index.html" data-pt-label="nk">Nitesh Kothari</a>
+      <span>&copy; <span class="sf-year">2026</span></span>
+    </div>
+    <div class="sf-links">
+      <a href="mailto:niteshsachinkothari@gmail.com">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+    <script>document.querySelectorAll('.sf-year').forEach(function(e){e.textContent=new Date().getFullYear()})</script>
+  </footer>
 
 </div>
 

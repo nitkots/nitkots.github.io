@@ -1,0 +1,233 @@
+/* Letter-sphere opening for the main site. The page keeps its own look (beige
+   paper, EB Garamond, system sans); only the sphere itself is dark, warm and
+   grainy. Scoped to .sphere-hero. --horizon is set by home.js to the screen row
+   of the sphere's top edge, so the typed word always sits just above it. */
+.sphere-hero {
+  --paper: #eae8e1;
+  --ink: #1a1a1a;
+  --ink-soft: #55534b;
+  --ink-faint: #6a685f;
+  --bronze: #8a6a52;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --ease: cubic-bezier(.22, .8, .22, 1);
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--paper);
+  isolation: isolate;
+}
+.sphere-hero .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.sphere-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+  touch-action: pan-y;
+  outline: none;
+  opacity: 0;
+  transition: opacity 1.8s var(--ease);
+}
+.sphere-hero.is-ready .sphere-canvas { opacity: 1; }
+/* Name, with the sections underneath */
+.hero-top {
+  position: absolute; z-index: 2; left: 0; right: 0;
+  top: clamp(64px, 11vh, 120px);
+  padding: 0 20px;
+  text-align: center;
+}
+.hero-id {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(16px, 2.2vw, 30px);
+}
+.hero-photo {
+  width: clamp(76px, 8.4vw, 124px); height: auto; aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .04), 0 12px 26px -14px rgba(40, 35, 25, .45);
+  flex-shrink: 0;
+}
+.hero-name {
+  font-family: var(--serif, 'EB Garamond', Georgia, serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(44px, 6.4vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #111;
+}
+.hero-words {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 20px;
+  margin-top: clamp(14px, 2.2vh, 22px);
+  font-family: var(--sans, -apple-system, BlinkMacSystemFont, system-ui, sans-serif);
+  font-size: 13.5px;
+}
+.hero-words a, .hero-words button {
+  font: inherit;
+  color: #000;
+  background: none; border: 0; cursor: pointer;
+  padding: 6px 0 1px; /* comfortable touch height */
+  text-decoration: none;
+  border-bottom: 1px solid #817c70;
+  transition: border-color .18s, transform .18s ease;
+  transform-origin: center bottom;
+}
+.hero-words a:hover, .hero-words button:hover { border-color: #000; transform: scale(1.09); }
+/* "contact": copies the address with the same feel as the About page's copy button.
+   Motion: eases in with a soft lift (no bounce), eases out a little faster. */
+.hero-words .hw-email {
+  position: relative; display: inline-flex; align-items: center; gap: 5px;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .35s ease, border-color .35s ease, transform .25s cubic-bezier(.22, 1, .36, 1);
+}
+.hero-words .hw-email.pressed { transform: scale(0.97); }
+.hero-words .hw-email.copied { color: #1f9d4c; border-color: #a8e6bb; }
+.hw-icon { position: relative; width: 12px; height: 12px; flex-shrink: 0; opacity: 0.4; transition: opacity .3s ease; }
+.hw-email:hover .hw-icon, .hw-email:focus-visible .hw-icon, .hw-email.copied .hw-icon { opacity: 1; }
+.hw-icon svg { position: absolute; inset: 0; width: 12px; height: 12px; transition: opacity .3s ease, transform .4s cubic-bezier(.22, 1, .36, 1); }
+.hw-icon .icon-check { opacity: 0; transform: scale(0.6) rotate(-20deg); }
+.hw-email.copied .icon-copy { opacity: 0; transform: scale(0.6) rotate(20deg); }
+.hw-email.copied .icon-check { opacity: 1; transform: none; }
+
+/* The "Email copied" bubble, shared by the contact link and the spelled word */
+.copy-tip, .readout-tip {
+  position: absolute; left: 50%; bottom: calc(100% + 8px);
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #1a1a1a; color: #fff;
+  font-family: var(--sans, -apple-system, BlinkMacSystemFont, system-ui, sans-serif);
+  font-size: 11px; font-weight: 500; letter-spacing: 0; text-transform: none;
+  padding: 4px 9px; border-radius: 5px; white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transform: translate3d(-50%, 6px, 0) scale(0.94);
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+  /* leaving */
+  transition: opacity .28s ease, transform .32s cubic-bezier(.4, 0, .2, 1);
+}
+.copy-tip::after, .readout-tip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 4px solid transparent; border-top-color: #1a1a1a;
+}
+.readout-tip { bottom: calc(100% + 10px); }
+/* Under the contact link, so it never covers the name above */
+.copy-tip { bottom: auto; top: calc(100% + 9px); transform: translate3d(-50%, -6px, 0) scale(0.94); transform-origin: 50% 0; }
+.copy-tip::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: #1a1a1a; }
+.readout-tip svg { width: 13px; height: 13px; }
+.readout-wrap { position: relative; }
+/* arriving */
+.hw-email.copied .copy-tip,
+.sphere-hero.copied .readout-tip {
+  opacity: 1;
+  transform: translate3d(-50%, 0, 0) scale(1);
+  transition: opacity .3s ease-out, transform .45s cubic-bezier(.22, 1, .36, 1);
+}
+.readout { transition: color .4s ease; }
+.sphere-hero.copied .readout, .sphere-hero.copied.is-complete .readout { color: #1f9d4c; }
+.sphere-hero.is-loading .hero-top > * { opacity: 0; transform: translateY(10px); }
+.hero-top > * { transition: opacity 1.1s var(--ease), transform 1.3s var(--ease); }
+.hero-top > .hero-words { transition-delay: .15s; }
+
+/* The typed destination, just above the sphere's edge */
+.hero-console {
+  position: absolute; z-index: 2; left: 0; right: 0;
+  top: calc(var(--horizon, 55vh) - 92px);
+  display: flex; flex-direction: column; align-items: center; gap: 9px;
+  padding: 0 16px;
+  text-align: center;
+  pointer-events: none;
+  transition: opacity 1.2s var(--ease) .5s;
+}
+.sphere-hero.is-loading .hero-console { opacity: 0; }
+.readout {
+  min-height: 30px;
+  font-family: var(--mono);
+  font-size: 20px;
+  letter-spacing: 0.55em;
+  padding-left: 0.55em; /* optically re-centre the tracked letters */
+  color: #2a2725;
+  display: flex; align-items: center; justify-content: center;
+}
+.readout .ch { display: inline-block; animation: hero-ch-in .6s var(--ease) both; }
+.readout .ghost { color: #aaa498; }
+.readout .caret {
+  display: inline-block; width: 1px; height: 18px; margin-left: -0.2em;
+  background: #4a4640;
+  animation: hero-caret 1.2s steps(1) infinite;
+}
+.readout.is-empty .caret { opacity: .6; }
+.readout.shake { animation: hero-nudge .4s var(--ease); }
+.sphere-hero.is-complete .readout { color: #000; transition: color .4s; }
+.sphere-hero.is-complete .readout .caret { display: none; }
+.hint {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #5f5a52;
+  min-height: 1.4em;
+  transition: color .3s;
+}
+.hint[data-tone="invalid"] { color: #9c4f3c; }
+.hint[data-tone="complete"] { color: var(--ink); }
+
+/* Back / reset: near the bottom so they never cover letters at the sphere's edge */
+.console-ctl {
+  position: absolute; z-index: 2; left: 50%; bottom: max(64px, calc(env(safe-area-inset-bottom) + 56px)); /* above the footer */
+  transform: translateX(-50%);
+  display: flex; gap: 18px;
+}
+.console-ctl[hidden] { display: none; }
+.console-ctl button {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+  color: #a99e90; background: none; border: 0; cursor: pointer; /* on the dark sphere */
+  padding: 8px 4px;
+  transition: color .2s;
+}
+.console-ctl button:hover { color: #ece4d6; }
+
+/* No WebGL: a strip of letter buttons on a plain dark disc */
+.letter-fallback { display: none; }
+.sphere-hero.no-webgl .letter-fallback {
+  position: absolute; z-index: 2; left: 0; right: 0; top: 60%;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  padding: 0 16px;
+}
+.sphere-hero.no-webgl::after {
+  content: ''; position: absolute; z-index: 0; left: 50%; top: 58%;
+  width: max(150vw, 900px); aspect-ratio: 1; transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 10%, #2e2823 0%, #0b0a09 50%);
+  box-shadow: 0 -18px 60px rgba(43, 38, 34, 0.25);
+}
+.fb-letters { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 520px; }
+.fb-letter {
+  width: 52px; height: 52px; border-radius: 50%;
+  font-family: var(--mono); font-weight: 300; font-size: 18px; color: #ebe3d4;
+  background: rgba(11, 10, 9, 0.6); border: 1px solid rgba(235, 227, 212, 0.22);
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.fb-letter:hover, .fb-letter:focus-visible { border-color: #c79c79; color: #dcb390; }
+.fb-controls { display: flex; gap: 16px; }
+.fb-ctl { font-family: var(--mono); font-size: 11px; color: #c9bfb1; background: none; border: 0; cursor: pointer; padding: 8px; }
+
+@keyframes hero-ch-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hero-caret { 50% { opacity: 0; } }
+@keyframes hero-nudge { 30% { transform: translateX(-3px); } 65% { transform: translateX(2px); } 100% { transform: none; } }
+
+@media (max-width: 640px) {
+  .console-ctl { bottom: max(84px, calc(env(safe-area-inset-bottom) + 76px)); }
+  .hero-top { top: clamp(52px, 9vh, 90px); }
+  .hero-name { font-size: clamp(36px, 10.5vw, 56px); text-align: left; line-height: .95; }
+  .hero-photo { width: 76px; border-radius: 10px; }
+  .hero-id { gap: 14px; }
+  .hero-words { gap: 2px 10px; font-size: 12.5px; }
+  .readout { font-size: 18px; letter-spacing: 0.45em; padding-left: 0.45em; }
+  .hint { font-size: 9.5px; letter-spacing: .12em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sphere-canvas, .hero-top > *, .hero-console { transition-duration: .2s !important; transition-delay: 0s !important; }
+  .sphere-hero.is-loading .hero-top > * { transform: none; }
+  .readout .caret, .readout .ch, .readout.shake { animation: none; }
+}
